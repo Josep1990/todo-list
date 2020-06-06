@@ -22,7 +22,7 @@ const Todos               = require("./models/tasks"),
 //=================================================================================
 //                              Settings
 mongoose.connect("mongodb://localhost/todo_list",
-{useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true}); //depracation prevent
+{useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true, useCreateIndex: true}); //depracation prevent
 
 app.use(bodyParser.urlencoded({extended: true})); //get data from the form
 app.use(methodOverride("_method"));
@@ -54,7 +54,7 @@ app.use(function(req, res, next){
 app.use(autenticationRoutes);
 app.use("/index", todoRoutes);
 app.use(resetPassword);
-
+console.log(process.env);
 //==================================================================================
 //                              SERVER
 const port = 3000;

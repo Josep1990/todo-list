@@ -27,7 +27,8 @@ router.post("/", middleware.isLoggedin, function(req, res){
     const name   = req.body.task,
           author = { //req.user contains the information about the current logged in user
               id: req.user._id,
-              username: req.user.username
+              username: req.user.username,
+              
           }
         
     const newTask = {name:name, author:author}; //object to be add to the database

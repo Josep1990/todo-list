@@ -3,14 +3,14 @@
 <div class="login-box">
     <h1>New Password</h1>
 
-    <form action="/forgot" method="POST">
+    <form action="/reset/<%=token%>" method="POST">
         <div class="textbox">
             <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="password" pattern=".{6,}" required title="Min 6 characters long" name="password" placeholder="Password">
+            <input type="password" pattern=".{6,}" required title="Min 6 characters long" name="password" placeholder=" New Password">
         </div>
         <div class="textbox">
             <i class="fa fa-lock" aria-hidden="true"></i>
-            <input type="password" pattern=".{6,}" required title="Min 6 characters long" name="password" placeholder="Password">
+            <input type="password" pattern=".{6,}" required title="Min 6 characters long" name="confirm" placeholder="Confirm Password">
         </div>
         <button class="btn-login">Submit</button>
     </form>

@@ -1,11 +1,10 @@
-var express = require("express");
-var router  = express.Router();
-var passport = require("passport");
-var User = require("../models/user");
-var Todos = require("../models/task");
-var async = require("async");
-var nodemailer = require("nodemailer");
-var crypto = require("crypto");
+const express    = require("express"),
+      router     = express.Router(),
+      passport   = require("passport"),
+      User       = require("../models/user"),
+      async      = require("async"),
+      nodemailer = require("nodemailer"),
+      crypto     = require("crypto");
 
 
 // forgot password
@@ -40,15 +39,15 @@ router.get('/forgot', function(req, res) {
         var smtpTransport = nodemailer.createTransport({
           service: 'Gmail', 
           auth: {
-            user: 'learntocodeinfo@gmail.com',
+            user: 'todolistkeepsimple@gmail.com',
             pass: process.env.GMAILPW
           }
         });
         var mailOptions = {
           to: user.email,
-          from: 'learntocodeinfo@gmail.com',
+          from: 'todolistkeepsimple@gmail.com',
           subject: 'Node.js Password Reset',
-          text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+          text: user.username + 'you are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
             'http://' + req.headers.host + '/reset/' + token + '\n\n' +
             'If you did not request this, please ignore this email and your password will remain unchanged.\n'
@@ -104,15 +103,15 @@ router.get('/forgot', function(req, res) {
         var smtpTransport = nodemailer.createTransport({
           service: 'Gmail', 
           auth: {
-            user: 'learntocodeinfo@gmail.com',
+            user: 'todolistkeepsimple@gmail.com',
             pass: process.env.GMAILPW
           }
         });
         var mailOptions = {
           to: user.email,
-          from: 'learntocodeinfo@mail.com',
+          from: 'todolistkeepsimple@gmail.com',
           subject: 'Your password has been changed',
-          text: 'Hello,\n\n' +
+          text: 'Hello,\n\n' + user.username +
             'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
         };
         smtpTransport.sendMail(mailOptions, function(err) {
@@ -121,7 +120,7 @@ router.get('/forgot', function(req, res) {
         });
       }
     ], function(err) {
-      res.redirect('/campgrounds');
+      res.redirect('/index');
     });
   });
 

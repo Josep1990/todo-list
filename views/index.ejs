@@ -1,0 +1,28 @@
+<%-include("./partials/header")%>
+
+
+
+    <div class="container">
+        <h1 class="header">List your activities here</h1>
+        <form class="todo-form" action="/index" method="POST">        
+            <input class="task-input" type="text" name="task"  placeholder="New Task" maxlength="90" required><!--                
+         --><button class="btn-add" type="submit"><i class="fas fa-plus"></i></button>
+        </form>
+
+        <ul>
+            <%tasks.forEach(function(task){%>                
+                <% if(task.author.id.equals(currentUser._id)){%>
+                    <li>
+                        <form class="todo-form" action="/index/<%=task._id%>?_method=DELETE" method="POST">
+                            <button class="btn-delete"><i class="fas fa-trash"></i></button><%= task.name %>
+                        </form>
+                    </li>
+                <%}%>
+            <%})%>
+        </ul>        
+    </div>
+
+ 
+
+<%-include("./partials/footer")%>
+

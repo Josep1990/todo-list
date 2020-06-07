@@ -16,7 +16,7 @@ router.get('/forgot', function(req, res) {
     async.waterfall([
       function(done) {
         crypto.randomBytes(20, function(err, buf) {
-          var token = buf.toString('hex');
+          let token = buf.toString('hex');
           done(err, token);
         });
       },
@@ -36,14 +36,14 @@ router.get('/forgot', function(req, res) {
         });
       },
       function(token, user, done) {
-        var smtpTransport = nodemailer.createTransport({
+        let smtpTransport = nodemailer.createTransport({
           service: 'Gmail', 
           auth: {
             user: 'todolistkeepsimple@gmail.com',
             pass: process.env.GMAILPW
           }
         });
-        var mailOptions = {
+        let mailOptions = {
           to: user.email,
           from: 'todolistkeepsimple@gmail.com',
           subject: 'Node.js Password Reset',
@@ -100,14 +100,14 @@ router.get('/forgot', function(req, res) {
         });
       },
       function(user, done) {
-        var smtpTransport = nodemailer.createTransport({
+        let smtpTransport = nodemailer.createTransport({
           service: 'Gmail', 
           auth: {
             user: 'todolistkeepsimple@gmail.com',
             pass: process.env.GMAILPW
           }
         });
-        var mailOptions = {
+        let mailOptions = {
           to: user.email,
           from: 'todolistkeepsimple@gmail.com',
           subject: 'Your password has been changed',

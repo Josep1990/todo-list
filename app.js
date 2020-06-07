@@ -21,9 +21,9 @@ const Todos               = require("./models/tasks"),
 
 //=================================================================================
 //                              Settings
-mongoose.connect("mongodb://localhost/todo_list",
+mongoose.connect(process.env.DATABASEURL,
 {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true, useCreateIndex: true}); //depracation prevent
-
+//mongodb+srv://dbMaster:Jpsg@1909@1990April-@yelpcamp-w6pyf.mongodb.net/todo_list?retryWrites=true&w=majority
 app.use(bodyParser.urlencoded({extended: true})); //get data from the form
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
@@ -54,10 +54,10 @@ app.use(function(req, res, next){
 app.use(autenticationRoutes);
 app.use("/index", todoRoutes);
 app.use(resetPassword);
-console.log(process.env);
+
 //==================================================================================
 //                              SERVER
-const port = 3000;
+const port = process.env.PORT || 3000;
 app.listen(port, function(){
     console.log("Server ON!!!");
 })

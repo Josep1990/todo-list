@@ -140,7 +140,7 @@ li{
     line-height: 50px;
     color: rgb(118, 119, 138);
     text-transform: capitalize;
-    overflow: hidden;
+    overflow: auto;
 }
 
 li:nth-child(2n){

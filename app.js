@@ -23,7 +23,7 @@ const Todos               = require("./models/tasks"),
 //                              Settings
 mongoose.connect(process.env.DATABASEURL,
 {useNewUrlParser: true, useFindAndModify: false, useUnifiedTopology: true, useCreateIndex: true}); //depracation prevent
-//mongodb+srv://dbMaster:Jpsg@1909@1990April-@yelpcamp-w6pyf.mongodb.net/todo_list?retryWrites=true&w=majority
+
 app.use(bodyParser.urlencoded({extended: true})); //get data from the form
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + "/public"));
